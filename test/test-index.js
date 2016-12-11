@@ -12,5 +12,8 @@ describe('App', function() {
 		var renderer = TestUtils.createRenderer();
 		renderer.render(<App />);
 						var result = renderer.getRenderOutput();
+
+		result.type.should.equal('h1');
+		result.props.children.should.equal('hello world');
 	});
 });
