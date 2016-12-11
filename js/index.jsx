@@ -8,9 +8,9 @@ var App        = require('./components/App');
 
 document.addEventListener('DOMContentLoaded', function() {
 	ReactDOM.render(
-		<Provider store={store}>
-			<App />
-		</Provider>,
+		<h1>
+			hello world
+		</h1>,
 		document.getElementById('app'));
 });
 
