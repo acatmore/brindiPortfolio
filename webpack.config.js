@@ -3,19 +3,22 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    entry: path.resolve(__dirname, 'js/index.js'),
+    entry: path.resolve(__dirname, 'js/index.jsx'),
     output: {
         path: path.resolve(__dirname, 'build/js'),
-        filename: 'index.js',
+        filename: 'index.jsx',
     },
     devtool: 'inline-source-map',
     module: {
       loaders: [
         {
-          test: /\.js$/,
+          test: /\.jsx?$/,
           exclude: /(node_modules)/,
           loader: 'babel',
         },
       ]
-    }
+    },
+	resolve: {
+		extensions: ['', '.js', '.jsx', '.es6']
+	}
 };
