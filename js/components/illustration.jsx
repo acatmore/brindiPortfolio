@@ -5,12 +5,19 @@ var actions = require('../actions/index');
 
 var Illustration = React.createClass({
   render: function() {
-    <image id="illustration">
-      <h2>Illustration title</h2>
-      <p>Donec sed odio dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Maecenas sed diam eget risus varius blandit sit amet non magna. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-
-      <p> image goes here </p>
-    </image>
+  	var {id, title, date, content } = this.props.currentIllustration;
+  	return (
+  		<image id={id} className="illustration">
+  			<header className="illustration__heading">
+      			<h2>{title.rendered}</h2>
+      			<p>{date}</p>
+      			<p> image goes here </p>
+      		</header>
+      		<div className="illustration__entry">
+      			{content.rendered}
+      		</div>
+    	</image>
+  	);
   }
 });
 
@@ -18,6 +25,7 @@ var Illustration = React.createClass({
 var mapStateToProps = function(state, props) {
   return {
 
+  	currentIllustration: state.currentIllustration
   };
 };
 

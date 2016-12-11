@@ -4,11 +4,17 @@ var actions = require('../actions/index');
 
 
 var About = React.createClass({
+  componentDidMount: function() {
+  	this.props.dispatch(
+  		actions.fetchAboutPage()
+  	);
+  },
+
   render: function() {
     <section id="about">
-      <h2>About this site</h2>
-      <p>Sed posuere consectetur est at lobortis. Donec sed odio dui. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-    </section>
+    	<h2>{this.props.page.title.rendered}</h2>
+    	{this.props.page.content.rendered}
+	</section>
   }
 });
 

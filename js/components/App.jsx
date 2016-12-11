@@ -9,9 +9,14 @@ var Footer			 = require('./footer');
 
 var App = function(props) {
 	return (
-		<h1>
-			hello world
-		</h1>
+		<div>
+			<header />
+			<main id="content">
+				<IllustrationList />
+			</main>
+			<Footer />
+		</div>
+
 	);
 };
 
