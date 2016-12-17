@@ -15,7 +15,7 @@ var appReducer = function(state, action) {
 
   switch (action.type) {
     case actions.FETCH_ILLUSTRATIONS_SUCCESS :
-      var newIllustrations = state.illustrations.concat([ action.illustrations ]);
+      var newIllustrations = state.illustrations.concat(action.illustrations);
       return Object.assign({}, state, { illustrations: newIllustrations });
       break;
 

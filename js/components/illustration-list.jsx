@@ -6,9 +6,9 @@ var Link    = router.Link;
 
 
 var IllustrationList = React.createClass({
-  componentDidMount: function() {
+  componentWillMount: function() {
   	this.props.dispatch(
-  		actions.fetchIllustrations()
+  		actions.fetchIllustrations(this.props.illustrations)
   	);
   },
   viewSingleIllustration: function() {
@@ -17,20 +17,20 @@ var IllustrationList = React.createClass({
   	);
   },
 
+  eachIllustration: function(illustration, i) {
+    return (
+      <li key={i}>
+        <Link to={'/' + illustration.slug} onClick={this.viewSingleIllustration}>
+          {illustration.title.rendered}
+        </Link>
+      </li>
+    );
+  },
+
   render: function() {
-  	var illustrations = this.props.illustrations.map(
-  		function(illustration, i) {
-  			return (
-  				<li key={i}>
-  					<Link to={'/' + illustration.slug} onClick={this.viewSingleIllustration}>
-  						{illustration.title.rendered}
-  					</Link>
-  				</li>
-  			);
-  		});
   	return (
   		<ul className="illustration-list">
-  			{illustrations}
+  			{this.props.illustrations.map(this.eachIllustration)}
   		</ul>
   	);
   }

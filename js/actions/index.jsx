@@ -20,7 +20,7 @@ var fetchIllustrationsError = function(illustrations, error) {
 };
 
 
-var fetchIllustrations = function() {
+var fetchIllustrations = function(illustrations) {
   return function(dispatch) {
     var init = { method: 'GET' };
     var url  = 'localhost:8888/wp-json/wp/v2/illustrations';
