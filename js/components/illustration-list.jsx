@@ -2,7 +2,7 @@ var React   = require('react');
 var connect = require('react-redux').connect;
 var actions = require('../actions/index');
 var router  = require('react-router');
-var Link    = require('router.Link');
+var Link    = router.Link;
 
 
 var IllustrationList = React.createClass({

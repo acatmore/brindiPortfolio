@@ -2,7 +2,7 @@ var React   = require('react');
 var connect = require('react-redux').connect;
 var actions = require('../actions/index');
 var router  = require('react-router');
-var Link	= require('router.Link');
+var Link	= router.Link;
 
 
 var Header = React.createClass({
@@ -13,10 +13,12 @@ var Header = React.createClass({
 	},
 
 	render: function() {
-		<header role="banner" className="site-header">
-			<h1><Link to={'/'}>{this.props.name}</Link></h1>
-			<p>{this.props.description}</p>
-		</header>
+		return(
+			<header role="banner" className="site-header">
+				<h1><Link to={'/'}>{this.props.name}</Link></h1>
+				<p>{this.props.description}</p>
+			</header>
+		);
 	}
 });
 
