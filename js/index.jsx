@@ -1,26 +1,30 @@
-require('babel-polyfill');
-var React      		   = require('react');
-var ReactDOM   		   = require('react-dom');
-var router     		   = require('react-router');
-var Provider   		   = require('react-redux').Provider;
-var store	   		   = require('./store');
-var App        		   = require('./components/App');
-var IllustrationList   = require('./components/illustration-list');
-var Router  		   = require.Router;
-var Route 			   = require.Route;
-var hashHistory        = require.hasHistory;
-var indexRoute 		   = require.IndexRoute;
+
+import React from "react";
+import ReactDOM from "react-dom";
+import router from "react-router";
+import {Provider} from "react-redux";
+import store from "./store";
+import App from "./components/App";
+import Illustration from "./components/illustration";
+import IllustrationList from "./components/illustration-list";
+// var Router 		= router.Router;
+// var Route  		= router.Route;
+// var hashHistory = router.hashHistory;
 
 
 document.addEventListener('DOMContentLoaded', function() {
 	ReactDOM.render(
 		<Provider store={store}>
-			<Router history={hashHistory}>
-				<Route path="/"  component={App}>
-					<Route path=":slug" component={IllustrationList} />
-				</Route>
-			</Router>
+			<App />
 		</Provider>,
 		document.getElementById('app'));
 });
 
+
+
+			// <Router history={hashHistory}>
+			// 	<Route path=""  component={App}>
+			// 		<Route path="/" component={IllustrationList} />
+			// 		<Route path=":id" component={IllustrationList} />
+			// 	</Route>
+			// </Router>

@@ -7,18 +7,20 @@ var About 			 = require('./about');
 var Footer			 = require('./footer');
 
 
-var App = function(props) {
-	return (
-		<div>
-			<header />
-			<main id="content">
-				<IllustrationList />
-			</main>
-			<Footer />
-		</div>
-
-	);
-};
+var App = React.createClass({
+	render: function() {
+		return (
+			<div>
+				<Header />
+				<main id="content">
+					{this.props.children}
+					<About />
+				</main>
+				<Footer />
+			</div>
+		);
+	}
+});
 
 
 module.exports = App;

@@ -5,7 +5,7 @@ var initialState = {
   name: '',
   description: '',
   aboutPage: {},
-  illustrations: [],
+  illustrations: {},
   currentIllustration: {}
 };
 
@@ -15,12 +15,18 @@ var appReducer = function(state, action) {
 
   switch (action.type) {
     case actions.FETCH_ILLUSTRATIONS_SUCCESS :
-      var newIllustrations = state.illustrations.concat(action.illustrations);
+      var newIllustrations = {};
+      action.illustrations.forEach(function(illustration) {
+        newIllustrations[illustration.id] = illustration;
+      });
       return Object.assign({}, state, { illustrations: newIllustrations });
       break;
 
     case actions.FETCH_SINGLE_ILLUSTRATION_SUCCESS :
-      return Object.assign({}, state, { currentIllustration: action.currentIllustration });
+      var newIllustrations = Object.assign({}, state.illustrations, {
+        [actions.currentIllustration.id]: actions.currentIllustration
+      });
+      return Object.assign({}, state, { illustrations: newIllustrations });
       break;
 
     case actions.FETCH_ABOUT_PAGE_SUCCESS :

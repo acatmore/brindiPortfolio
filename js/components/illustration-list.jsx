@@ -11,26 +11,32 @@ var IllustrationList = React.createClass({
   		actions.fetchIllustrations(this.props.illustrations)
   	);
   },
-  viewSingleIllustration: function() {
-  	this.props.dispatch(
-  		actions.fetchSingleIllustration(this.props.illustration.id)
-  	);
+
+  getTitle: function(illustrationId) {
+    return { __html: this.props.illustrations[illustrationId].title.rendered};
   },
 
-  eachIllustration: function(illustration, i) {
+  getExcerpt: function(illustrationId) {
+    return { __html: this.props.illustrations[illustrationId].excerpt.rendered};
+  },
+
+  eachIllustration: function(illustrationId, i) {
     return (
       <li key={i}>
-        <Link to={'/' + illustration.slug} onClick={this.viewSingleIllustration}>
-          {illustration.title.rendered}
-        </Link>
+        <Link to={'/' + illustrationId} dangerouslySetInnerHTML={this.getTitle(IllustrationId)} />
+        <div className="excerpt" dangerouslySetInnerHTML={this.getExcerpt(illustrationId)} />
       </li>
     );
   },
 
   render: function() {
+    if (!this.props.illustrations) {
+      return <div>loading... </div>;
+    }
+
   	return (
   		<ul className="illustration-list">
-  			{this.props.illustrations.map(this.eachIllustration)}
+  			{Object.keys(this.props.illustrations).map(this.eachIllustration)}
   		</ul>
   	);
   }

@@ -1,4 +1,5 @@
-require('isomorphic-fetch');
+// require('isomorphic-fetch');
+import fetch from "isomorphic-fetch";
 
 
 var FETCH_ILLUSTRATIONS_SUCCESS = 'FETCH_ILLUSTRATIONS_SUCCESS';
@@ -23,7 +24,7 @@ var fetchIllustrationsError = function(illustrations, error) {
 var fetchIllustrations = function(illustrations) {
   return function(dispatch) {
     var init = { method: 'GET' };
-    var url  = 'localhost:8888/wp-json/wp/v2/illustrations';
+    var url  = 'http://localhost:8888/brindiPortfolio/wp-json/wp/v2/illustrations';
 
     return fetch(url, init).then(function(response) {
       if (response.status < 200 || response.status >= 300) {
@@ -47,7 +48,7 @@ var fetchIllustrations = function(illustrations) {
 };
 
 
-var FETCH_SINGLE_IllUSTRATION_SUCCESS = 'FETCH_SINGLE_ILLUSTRATION_SUCCESS';
+var FETCH_SINGLE_ILLUSTRATION_SUCCESS = 'FETCH_SINGLE_ILLUSTRATION_SUCCESS';
 var fetchSingleIllustrationSuccess = function(illustration) {
   return {
     type: FETCH_SINGLE_ILLUSTRATION_SUCCESS,
@@ -69,7 +70,7 @@ var fetchSingleIllustrationError = function(illustration, error) {
 var fetchSingleIllustration = function(illustrationId) {
   return function(dispatch) {
     var init = { method: 'GET' };
-    var url  = 'localhost:8888/wp-json/wp/v2/illustrations/' + illustrationId;
+    var url  = 'http://localhost:8888/brindiPortfolio/wp-json/wp/v2/illustrations/' + illustrationId;
 
     return fetch(url, init).then(function(response) {
       if (response.status < 200 || response.status >= 300) {
@@ -86,7 +87,7 @@ var fetchSingleIllustration = function(illustrationId) {
       var illustration = data;
       return dispatch(fetchSingleIllustrationSuccess(illustration));
     })
-    .catch(function(error) {
+    .catch(function(illustration, error) {
       return dispatch(fetchSingleIllustrationError(illustration, error));
     });
   }
@@ -115,7 +116,7 @@ var fetchAboutPageError = function(page, error) {
 var fetchAboutPage = function() {
   return function(dispatch) {
     var init = { method: 'GET' };
-    var url  = 'localhost:8888/wp-json/wp/v2/pages/2';
+    var url  = 'http://localhost:8888/brindiPortfolio/wp-json/wp/v2/pages/2';
 
     return fetch(url, init).then(function(response) {
       if (response.status < 200 || response.status >= 300) {
@@ -132,7 +133,7 @@ var fetchAboutPage = function() {
       var page = data;
       return dispatch(fetchAboutPageSuccess(page));
     })
-    .catch(function(error) {
+    .catch(function(page, error) {
       return dispatch(fetchAboutPageError(page, error));
     });
   }
@@ -163,7 +164,7 @@ var fetchSiteInfoError = function(name, description, error) {
 var fetchSiteInfo = function() {
   return function(dispatch) {
     var init = { method: 'GET' };
-    var url  = 'localhost:8888/r/wp-json';
+    var url  = 'http://localhost:8888/brindiPortfolio/wp-json';
 
     return fetch(url, init).then(function(response) {
       if (response.status < 200 || response.status >= 300) {

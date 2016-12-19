@@ -8,39 +8,7 @@
     "npm": "3.10.7"
   },
   "scripts": {
-    "start": "http-server -c-1 build",
-    "dev": "run-p watch serve",
-    "test": "mocha --recursive --compilers jsx:babel-core/register",
-    "build": "run-s build:*",
-    "clean": "rimraf build",
-    "serve": "npm start",
-    "watch": "run-p watch:*",
-    "mkdir": "mkdirp build",
-    "clean:html": "rimraf build/index.html",
-    "mkdir:html": "run-s mkdir",
-    "build:html": "run-s clean:html mkdir:html _build:html",
-    "_build:html": "cpr index.html build/index.html",
-    "watch:html": "run-s build:html _watch:html",
-    "_watch:html": "chokidar index.html -c \"npm run build:html\"",
-    "clean:jsx": "rimraf build/js",
-    "mkdir:jsx": "mkdirp build/js",
-    "build:jsx": "run-s clean:jsx mkdir:jsx _build:jsx",
-    "_build:jsx": "webpack",
-    "watch:jsx": "run-s build:jsx _watch:jsx",
-    "_watch:jsx": "webpack --watch",
-    "clean:css": "rimraf build/css",
-    "mkdir:css": "run-s mkdir",
-    "build:css": "run-s clean:css mkdir:css _build:css",
-    "_build:css": "cpr css build/css",
-    "watch:css": "run-s build:css _watch:css",
-    "_watch:css": "chokidar css/**/* -c \"npm run build:css\"",
-    "mkdir:assets": "run-s mkdir",
-    "clean:assets": "rimraf build/assets",
-    "build:assets": "run-s clean:assets mkdir:assets _build:assets",
-    "_build:assets": "cpr assets build/assets",
-    "watch:assets": "run-s build:assets _watch:assets",
-    "_watch:assets": "chokidar assets/**/* -c \"npm run build:assets\"",
-    "heroku-postbuild": "npm run build"
+    "dev": "webpack-dev-server --inline -d"
   },
   "repository": {
     "type": "git",
@@ -58,7 +26,8 @@
     "chokidar-cli": "^1.2.0",
     "mocha": "^3.0.1",
     "sinon": "^1.17.6",
-    "sinon-chai": "^2.8.0"
+    "sinon-chai": "^2.8.0",
+    "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
     "babel-cli": "^6.11.4",

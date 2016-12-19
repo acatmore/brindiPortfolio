@@ -4,18 +4,37 @@ var actions = require('../actions/index');
 
 
 var Illustration = React.createClass({
+  componentWillMount: function() {
+    this.props.dispatch(
+      actions.fetchIllustrations(this.props.illustrations)
+    );
+    this.props.dispatch(
+      actions.fetchSingleIllustration(this.props.params.id)
+    );
+  },
+
+  getTitle: function() {
+    return { __html: this.props.currentIllustration.title.rendered};
+  },
+
+  getContent: function() {
+    return { __html: this.props.currentIllustration.content.rendered};
+  },
+
   render: function() {
-  	var {id, title, date, content } = this.props.currentIllustration;
+    if (!this.props.currentIllustration) {
+      return <div>loading... </div>
+    }
+
+    var {id, title, date, content} = this.props.currentIllustration;
   	return (
   		<image id={id} className="illustration">
   			<header className="illustration__heading">
-      			<h2>{title.rendered}</h2>
-      			<p>{date}</p>
       			<p> image goes here </p>
+            <h2 dangerouslySetInnerHTML={this.getTitle()} />
+            <p>Delivered on {date}</p>
       		</header>
-      		<div className="illustration__entry">
-      			{content.rendered}
-      		</div>
+      		<div className="illustration__entry" dangerouslySetInnerHTML={this.getContent()} />
     	</image>
   	);
   }
@@ -24,8 +43,8 @@ var Illustration = React.createClass({
 
 var mapStateToProps = function(state, props) {
   return {
-
-  	currentIllustration: state.currentIllustration
+    illustrations: state.illustrations,
+  	currentIllustration: state.illustrations[props.params.id]
   };
 };
 
