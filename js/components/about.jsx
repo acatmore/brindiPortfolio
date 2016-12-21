@@ -16,7 +16,7 @@ var About = React.createClass({
 
   render: function() {
     if (!this.props.aboutPage.title || !this.props.aboutPage.content) {
-      return <div> loading... </div>;
+      return <div> loading about page... </div>;
     }
 
     return (

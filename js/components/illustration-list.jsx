@@ -4,7 +4,6 @@ var actions = require('../actions/index');
 var router  = require('react-router');
 var Link    = router.Link;
 
-
 var IllustrationList = React.createClass({
   componentWillMount: function() {
   	this.props.dispatch(
@@ -21,23 +20,36 @@ var IllustrationList = React.createClass({
   },
 
   eachIllustration: function(illustrationId, i) {
+    var dateFormat = new Date(this.props.illustrations[illustrationId].date);
+    var datePretty = dateFormat.toDateString();
+    var illustrationSlug = this.props.illustrations[illustrationId].slug;
+    var illustrationNum = 'illustration-' + illustrationId;
+
     return (
-      <li key={i}>
-        <Link to={'/' + illustrationId} dangerouslySetInnerHTML={this.getTitle(IllustrationId)} />
+      <article key={i} id={illustrationNum}>
+        <header>
+        <Link to={'/' + illustrationId + '/' + illustrationSlug} dangerouslySetInnerHTML={this.getTitle(illustrationId)} />
+        </header>
         <div className="excerpt" dangerouslySetInnerHTML={this.getExcerpt(illustrationId)} />
-      </li>
+        <Link to={'/' + illustrationId + '/' + illustrationSlug}>Read more &raquo;</Link>
+      </article>
     );
   },
 
-  render: function() {
-    if (!this.props.illustrations) {
-      return <div>loading... </div>;
+  getResponse: function() {
+    if(Object.keys(this.props.illustrations).length === 0) {
+      return <p> Loading illustrations... </p>;
+    } else {
+      return <div>{Object.keys(this.props.illustrations).map(this.eachIllustration)}</div>;
     }
+  },
 
+  render: function() {
   	return (
-  		<ul className="illustration-list">
-  			{Object.keys(this.props.illustrations).map(this.eachIllustration)}
-  		</ul>
+      <section className="section illustrations">
+        <h2>The illustrations</h2>
+          {this.getResponse()}
+      </section>
   	);
   }
 });

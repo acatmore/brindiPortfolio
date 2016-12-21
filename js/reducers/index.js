@@ -19,7 +19,9 @@ var appReducer = function(state, action) {
       action.illustrations.forEach(function(illustration) {
         newIllustrations[illustration.id] = illustration;
       });
-      return Object.assign({}, state, { illustrations: newIllustrations });
+      return Object.assign({}, state, { 
+        illustrations: newIllustrations 
+      });
       break;
 
     case actions.FETCH_SINGLE_ILLUSTRATION_SUCCESS :

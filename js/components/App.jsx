@@ -14,7 +14,6 @@ var App = React.createClass({
 				<Header />
 				<main id="content">
 					{this.props.children}
-					<About />
 				</main>
 				<Footer />
 			</div>

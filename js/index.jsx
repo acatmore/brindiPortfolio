@@ -1,4 +1,4 @@
-
+require('babel-polyfill');
 import React from "react";
 import ReactDOM from "react-dom";
 import router from "react-router";
@@ -7,24 +7,24 @@ import store from "./store";
 import App from "./components/App";
 import Illustration from "./components/illustration";
 import IllustrationList from "./components/illustration-list";
-// var Router 		= router.Router;
-// var Route  		= router.Route;
-// var hashHistory = router.hashHistory;
+var Router 		= require('react-router').Router;
+var Route  		= require('react-router').Route;
+var hashHistory = require('react-router').hashHistory;
 
 
 document.addEventListener('DOMContentLoaded', function() {
 	ReactDOM.render(
 		<Provider store={store}>
-			<App />
+			<Router history={hashHistory}>
+				<Route path=""  component={App}>
+					<Route path="/" component={IllustrationList} />
+					<Route path=":id/:slug" component={Illustration} />
+				</Route>
+			</Router>
 		</Provider>,
 		document.getElementById('app'));
 });
 
 
 
-			// <Router history={hashHistory}>
-			// 	<Route path=""  component={App}>
-			// 		<Route path="/" component={IllustrationList} />
-			// 		<Route path=":id" component={IllustrationList} />
-			// 	</Route>
-			// </Router>
+// <App />

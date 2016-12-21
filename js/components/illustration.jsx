@@ -23,19 +23,24 @@ var Illustration = React.createClass({
 
   render: function() {
     if (!this.props.currentIllustration) {
-      return <div>loading... </div>
+      return <div>loading illustration... </div>
     }
 
     var {id, title, date, content} = this.props.currentIllustration;
+    var dateFormat = new Date(date);
+    var datePretty = dateFormat.toDateString();
+    var illustrationNum = 'illustration-' + id + '';
+
   	return (
-  		<image id={id} className="illustration">
+  		<article id={illustrationNum} className="illustration">
   			<header className="illustration__heading">
       			<p> image goes here </p>
             <h2 dangerouslySetInnerHTML={this.getTitle()} />
             <p>Delivered on {date}</p>
       		</header>
       		<div className="illustration__entry" dangerouslySetInnerHTML={this.getContent()} />
-    	</image>
+          <p>{this.props.illustrations}</p>
+    	</article>
   	);
   }
 });
