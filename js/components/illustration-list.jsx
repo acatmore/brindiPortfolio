@@ -19,6 +19,10 @@ var IllustrationList = React.createClass({
     return { __html: this.props.illustrations[illustrationId].excerpt.rendered};
   },
 
+  getContent: function(illustrationId) {
+    return { __html: this.props.illustrations[illustrationId].content.rendered};
+  },
+
   eachIllustration: function(illustrationId, i) {
     var dateFormat = new Date(this.props.illustrations[illustrationId].date);
     var datePretty = dateFormat.toDateString();
@@ -30,8 +34,8 @@ var IllustrationList = React.createClass({
         <header>
         <Link to={'/' + illustrationId + '/' + illustrationSlug} dangerouslySetInnerHTML={this.getTitle(illustrationId)} />
         </header>
+        <div className="content" dangerouslySetInnerHTML={this.getContent(illustrationId)} />
         <div className="excerpt" dangerouslySetInnerHTML={this.getExcerpt(illustrationId)} />
-        <Link to={'/' + illustrationId + '/' + illustrationSlug}>Read more &raquo;</Link>
       </article>
     );
   },
