@@ -33,6 +33,7 @@ var IllustrationList = React.createClass({
       <article key={i} id={illustrationNum}>
         <header>
         <Link to={'/' + illustrationId + '/' + illustrationSlug} dangerouslySetInnerHTML={this.getTitle(illustrationId)} />
+        <p>Delivered on <time dateTime={this.props.illustrations[illustrationId].date} className="date">{datePretty}</time></p>
         </header>
         <div className="content" dangerouslySetInnerHTML={this.getContent(illustrationId)} />
         <div className="excerpt" dangerouslySetInnerHTML={this.getExcerpt(illustrationId)} />
