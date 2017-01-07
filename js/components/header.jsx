@@ -1,4 +1,5 @@
 var React   = require('react');
+// import style from "./header.scss";
 var connect = require('react-redux').connect;
 var actions = require('../actions/index');
 var router  = require('react-router');
@@ -15,8 +16,15 @@ var Header = React.createClass({
 	render: function() {
 		return(
 			<header role="banner" className="site-header">
-				<h1><Link to={'/'}>{this.props.name}</Link></h1>
-				<p>{this.props.description}</p>
+				<ul>
+					<li><h1 class="name-link"><Link to={'/'}>{this.props.name}</Link></h1>
+						<p>{this.props.description}</p>
+					</li>
+					<li class="nav"><Link to={'/about'}>about</Link></li>
+					<li class="nav"><Link to={'/gallery'}>gallery</Link></li>
+					<li class="nav"><Link to={'/blog'}>blog</Link></li>
+					<li class="nav"><Link to={'/contact'}>contact</Link></li>
+				</ul>
 			</header>
 		);
 	}

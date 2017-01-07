@@ -7,7 +7,9 @@ var Footer = React.createClass({
   render: function() {
   	return (
   		<footer role="contentinfo" className="site-footer">
-      		<p>The footer</p>
+      		<p>Copyright © 2016 Brindi Kisamore All rights reserved. 
+      		All images are the property of Brindi Kisamore unless stated 
+      		otherwise and may not be used without written consent.</p>
     	</footer>
   		);
 

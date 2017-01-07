@@ -21,10 +21,13 @@ module.exports = {
               "babel-preset-es2015"
             ]
           }
-        },
+        }, {
+      test: /\.scss$/,
+      loaders: ["style", "css?modules", "sass"]
+    }
       ]
     },
 	resolve: {
-		extensions: ['', '.js', '.jsx', '.es6']
+		extensions: ['', '.js', '.jsx', '.es6', ".scss", ".json"]
 	}
 };

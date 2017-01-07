@@ -1,0 +1,36 @@
+header li {
+	text-decoration: none;
+	display: inline-block;
+	padding: 10px;
+}
+header a {
+	text-decoration: none;
+	color: black;
+}
+
+header p {
+	padding: 0px;
+	margin: 0px;
+	width: 250px;
+}
+
+header h1 {
+	padding-right: 0px;
+	margin: 0px;
+	width: 250px;
+}
+
+header .site-header {
+	display: block;
+	position: fixed;
+	width: 100%;
+	margin: auto 0px;
+	text-align: center;
+	z-index: 3333;
+	top: 0;
+}
+
+header ul {
+	padding: 0px;
+	display: inline-block;
+}
