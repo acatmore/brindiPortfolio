@@ -1,7 +1,51 @@
 // require('isomorphic-fetch');
 import fetch from "isomorphic-fetch";
 
+//fetch just commission illustrations
+var FETCH_COMMISSION_ILLUSTRATIONS_SUCCESS = 'FETCH_COMMISSION_ILLUSTRATIONS_SUCCESS';
+var fetchCommissionIllustrationsSuccess = function(commissionIllustrations) {
+  return {
+    type: FETCH_COMMISSION_ILLUSTRATIONS_SUCCESS,
+    commissionIllustrations: commissionIllustrations
+  };
+};
 
+var FETCH_COMMISSION_ILLUSTRATIONS_ERROR = 'FETCH_COMMISSION_ILLUSTRATIONS_ERROR';
+var fetchCommissionIllustrationsError = function(commissionIllustrations, error) {
+  return {
+    type: FETCH_COMMISSION_ILLUSTRATIONS_ERROR,
+    commissionIllustrations: commissionIllustrations,
+    error: error
+  };
+};
+
+var fetchCommissionIllustrations = function(illustrations) {
+  return function(dispatch) {
+    var init = { method: 'GET' };
+    var url  = 'http://localhost:8888/brindiPortfolio/wp-json/wp/v2/illustrations/categories/commissions' + illustrationId;
+
+    return fetch(url, init).then(function(response) {
+      if (response.status < 200 || response.status >= 300) {
+        var error = new Error(response.statusText);
+        error.response = response;
+        throw error;
+      }
+      return response;
+    }) 
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      var commissionIllustrations = data;
+      return dispatch(fetchCommissionIllustrationsSuccess(commissionIllustrations));
+    })
+    .catch(function(error) {
+      return dispatch(fetchCommissionIllustrationsError(commissionIllustrations, error));
+    });
+  }
+};
+
+//fetch all illustrations
 var FETCH_ILLUSTRATIONS_SUCCESS = 'FETCH_ILLUSTRATIONS_SUCCESS';
 var fetchIllustrationsSuccess = function(illustrations) {
   return {
@@ -46,6 +90,7 @@ var fetchIllustrations = function(illustrations) {
     });
   }
 };
+
 
 
 var FETCH_SINGLE_ILLUSTRATION_SUCCESS = 'FETCH_SINGLE_ILLUSTRATION_SUCCESS';
@@ -190,6 +235,14 @@ var fetchSiteInfo = function() {
   }
 };
 
+exports.FETCH_COMMISSION_ILLUSTRATIONS_SUCCESS = FETCH_COMMISSION_ILLUSTRATIONS_SUCCESS;
+exports.fetchCommissionIllustrationsSuccess    = fetchCommissionIllustrationsSuccess;
+
+exports.FETCH_COMMISSION_ILLUSTRATIONS_ERROR   = FETCH_COMMISSION_ILLUSTRATIONS_ERROR;
+exports.fetchCommissionIllustrationsError      = fetchCommissionIllustrationsError;
+
+exports.fetchCommissionIllustrations  = fetchCommissionIllustrations;
+
 
 exports.FETCH_ILLUSTRATIONS_SUCCESS  = FETCH_ILLUSTRATIONS_SUCCESS;
 exports.fetchIllustrationsSuccess    = fetchIllustrationsSuccess;
@@ -199,6 +252,7 @@ exports.fetchIllustrationsError    = fetchIllustrationsError;
 
 exports.fetchIllustrations  = fetchIllustrations;
 
+
 exports.FETCH_SINGLE_ILLUSTRATION_SUCCESS = FETCH_SINGLE_ILLUSTRATION_SUCCESS;
 exports.fetchSingleIllustrationSuccess    = fetchSingleIllustrationSuccess;
 
@@ -207,6 +261,7 @@ exports.fetchSingleIllustrationError    = fetchSingleIllustrationError;
 
 exports.fetchSingleIllustration  = fetchSingleIllustration;
 
+
 exports.FETCH_ABOUT_PAGE_SUCCESS = FETCH_ABOUT_PAGE_SUCCESS;
 exports.fetchAboutPageSuccess    = fetchAboutPageSuccess;
 
@@ -214,6 +269,7 @@ exports.FETCH_ABOUT_PAGE_ERROR = FETCH_ABOUT_PAGE_ERROR;
 exports.fetchAboutPageError    = fetchAboutPageError;
 
 exports.fetchAboutPage = fetchAboutPage;
+
 
 exports.FETCH_SITE_INFO_SUCCESS = FETCH_SITE_INFO_SUCCESS;
 exports.fetchSiteInfoSuccess    = fetchSiteInfoSuccess;

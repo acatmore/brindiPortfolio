@@ -17,11 +17,21 @@ var Header = React.createClass({
 		return(
 			<header role="banner" className="site-header">
 				<ul>
-					<li><h1 class="name-link"><Link to={'/'}>{this.props.name}</Link></h1>
+					<li>
+						<h1 class="name-link"><Link to={'/'}>{this.props.name}</Link></h1>
 						<p>{this.props.description}</p>
 					</li>
 					<li class="nav"><Link to={'/about'}>about</Link></li>
-					<li class="nav"><Link to={'/gallery'}>gallery</Link></li>
+					<li class="dropdown">
+						<div class="dropdown">
+							<h4><a>gallery</a></h4>
+							<div class="dropdown-content">
+								<h4><Link to={'/commissions'}>commissions</Link></h4>
+								<h4><Link to={'/personal-work'}>personal</Link></h4>
+								<h4><Link to={'/sketches'}>sketches</Link></h4>
+							</div>
+						</div>
+					</li>
 					<li class="nav"><Link to={'/blog'}>blog</Link></li>
 					<li class="nav"><Link to={'/contact'}>contact</Link></li>
 				</ul>
