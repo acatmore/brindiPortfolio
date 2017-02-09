@@ -6,7 +6,8 @@ var initialState = {
   description: '',
   aboutPage: {},
   illustrations: {},
-  currentIllustration: {}
+  currentIllustration: {},
+  commissionIllustration: {}
 };
 
 
@@ -21,6 +22,16 @@ var appReducer = function(state, action) {
       });
       return Object.assign({}, state, { 
         illustrations: newIllustrations 
+      });
+      break;
+
+    case actions.FETCH_COMMISSION_ILLUSTRATIONS_SUCCESS :
+      var newIllustrations = {};
+      action.commissionIllustrations.forEach(function(commissionIllustration) {
+        newIllustrations[commissionIllustration.id] = commissionIllustration;
+      });
+      return Object.assign({}, state, {
+        commissionIllustrations: newIllustrations
       });
       break;
 

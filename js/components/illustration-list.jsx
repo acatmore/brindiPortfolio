@@ -59,7 +59,6 @@ var IllustrationList = React.createClass({
   }
 });
 
-
 var mapStateToProps = function(state, props) {
   return {
 
@@ -69,6 +68,7 @@ var mapStateToProps = function(state, props) {
 
 
 var Container = connect(mapStateToProps)(IllustrationList);
+
 
 
 module.exports = Container;

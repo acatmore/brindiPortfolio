@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				<Route path=""  component={App}>
 					<Route path="/" component={IllustrationList} />
 					<Route path=":id/:slug" component={Illustration} />
+
 				</Route>
 			</Router>
 		</Provider>,
@@ -28,3 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // <App />
+//	<Route path="/comissions" component={CommissionIllustrationList} />
+//	<Route path="/personal" component={PersonalIllustrationList} />
+//	<Route path="/sketches" component={SketchesIllustrationList} />
