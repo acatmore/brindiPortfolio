@@ -8,7 +8,8 @@ var initialState = {
   illustrations: {},
   currentIllustration: {},
   commissionIllustration: {}
-};
+
+  };
 
 
 var appReducer = function(state, action) {
@@ -23,35 +24,32 @@ var appReducer = function(state, action) {
       return Object.assign({}, state, { 
         illustrations: newIllustrations 
       });
-      break;
 
     case actions.FETCH_COMMISSION_ILLUSTRATIONS_SUCCESS :
       var newIllustrations = {};
       action.commissionIllustrations.forEach(function(commissionIllustration) {
         newIllustrations[commissionIllustration.id] = commissionIllustration;
       });
+      //add categories for state && running into problems with definition of
+      //commissionillustrationlist
       return Object.assign({}, state, {
         commissionIllustrations: newIllustrations
       });
-      break;
 
     case actions.FETCH_SINGLE_ILLUSTRATION_SUCCESS :
       var newIllustrations = Object.assign({}, state.illustrations, {
         [actions.currentIllustration.id]: actions.currentIllustration
       });
       return Object.assign({}, state, { illustrations: newIllustrations });
-      break;
 
     case actions.FETCH_ABOUT_PAGE_SUCCESS :
       return Object.assign({}, state, { aboutPage: action.page });
-      break;
 
     case actions.FETCH_SITE_INFO_SUCCESS :
       return Object.assign({}, state, {
         name: action.name,
         description: action.description
       });
-      break;
   }
 
   return state;

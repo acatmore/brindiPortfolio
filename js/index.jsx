@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // <App />
-//	<Route path="/comissions" component={CommissionIllustrationList} />
+//					<Route path="categories/comission/" component={CommissionIllustrationList} />
+//					<Route path="categories" component={} />
 //	<Route path="/personal" component={PersonalIllustrationList} />
 //	<Route path="/sketches" component={SketchesIllustrationList} />

@@ -16,14 +16,6 @@ var Footer = React.createClass({
   }
 });
 
-
-// var mapStateToProps = function(state, props) {
-//   return {
-
-//   };
-// };
-
-
 var Container = connect()(Footer);
 
 

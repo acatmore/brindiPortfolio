@@ -32,7 +32,7 @@ var CommissionIllustrationList = React.createClass({
     return (
       <article key={i} id={illustrationNum}>
         <header>
-        <Link to={'/commission/' + illustrationId + '/' + illustrationSlug} dangerouslySetInnerHTML={this.getTitle(illustrationId)} />
+        <Link to={'/categories/commissions' + illustrationId + '/' + illustrationSlug} dangerouslySetInnerHTML={this.getTitle(illustrationId)} />
         <p>Delivered on <time dateTime={this.props.commissionIllustrations[illustrationId].date} className="date">{datePretty}</time></p>
         </header>
         <div className="content" dangerouslySetInnerHTML={this.getContent(illustrationId)} />

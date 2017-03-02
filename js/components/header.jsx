@@ -26,9 +26,9 @@ var Header = React.createClass({
 						<div class="dropdown">
 							<h4><a>gallery</a></h4>
 							<div class="dropdown-content">
-								<h4><Link to={'/commissions'}>commissions</Link></h4>
-								<h4><Link to={'/personal-work'}>personal</Link></h4>
-								<h4><Link to={'/sketches'}>sketches</Link></h4>
+								<h4><Link to={'/categories'}>commissions</Link></h4>
+								<h4><Link to={'/categories'}>personal</Link></h4>
+								<h4><Link to={'/categories'}>sketches</Link></h4>
 							</div>
 						</div>
 					</li>

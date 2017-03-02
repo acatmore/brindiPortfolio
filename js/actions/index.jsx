@@ -22,7 +22,7 @@ var fetchCommissionIllustrationsError = function(commissionIllustrations, error)
 var fetchCommissionIllustrations = function(illustrations) {
   return function(dispatch) {
     var init = { method: 'GET' };
-    var url  = 'http://localhost:8888/brindiPortfolio/wp-json/wp/v2/illustrations/categories/commissions' + illustrationId;
+    var url  = 'http://localhost:8888/brindiPortfolio/wp-json/wp/v2/illustrations?filter[category_name]=commission';
 
     return fetch(url, init).then(function(response) {
       if (response.status < 200 || response.status >= 300) {
